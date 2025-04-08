@@ -6,7 +6,7 @@ Motion graphics map designer for content creators
 - AI-assisted designs  
 - Free for YouTube creators   
 
-## Setup  
+## Setup   
 ```bash
 npm install
 npm start
