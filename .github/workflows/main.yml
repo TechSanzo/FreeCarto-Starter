@@ -1,0 +1,29 @@
+name: Build and Deploy
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - run: npm install
+      - run: npm run build
+      - name: Archive Production Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: amondnet/vercel-action@v30
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
