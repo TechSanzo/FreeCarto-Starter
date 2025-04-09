@@ -3,22 +3,21 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build" // For Create React App
-      }
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
       "src": "/favicon.ico",
-      "headers": {
-        "Cache-Control": "no-cache, no-store, must-revalidate"
-      }
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html" // Critical for SPAs!
+      "src": "/favicon-new.ico",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+      ]
     }
   ]
 }
