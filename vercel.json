@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "src/index.js", 
       "use": "@vercel/static-build",
       "config": {
         "distDir": "build"
@@ -10,14 +10,12 @@
     }
   ],
   "routes": [
-    // Cache control for favicon
     {
       "src": "/favicon.ico",
       "headers": {
         "Cache-Control": "no-cache, no-store, must-revalidate"
       }
     },
-    // SPA fallback rule
     {
       "src": "/(.*)",
       "dest": "/index.html"
